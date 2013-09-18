@@ -1,0 +1,14 @@
+<package>
+  <description brief="encoder">
+
+     encoder
+
+  </description>
+  <author>Kauil</author>
+  <license>BSD</license>
+  <review status="unreviewed" notes=""/>
+  <url>http://ros.org/wiki/encoder</url>
+
+</package>
+
+

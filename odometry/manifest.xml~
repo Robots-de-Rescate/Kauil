@@ -1,0 +1,19 @@
+<package>
+  <description brief="odometry">
+
+     odometry
+
+  </description>
+  <author>kauil</author>
+  <license>BSD</license>
+  <review status="unreviewed" notes=""/>
+  <url>http://ros.org/wiki/odometry</url>
+  <depend package="roscpp"/>
+  <depend package="tf"/>
+  <depend package="sensor_msgs"/>
+  <depend package="geometry_msgs"/>
+  <depend package="nav_msgs"/>
+
+</package>
+
+
