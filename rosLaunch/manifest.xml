@@ -1,0 +1,14 @@
+<package>
+  <description brief="rosLaunch">
+
+     rosLaunch
+
+  </description>
+  <author>parallels</author>
+  <license>BSD</license>
+  <review status="unreviewed" notes=""/>
+  <url>http://ros.org/wiki/rosLaunch</url>
+
+</package>
+
+
