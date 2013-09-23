@@ -1,5 +1,0 @@
-<launch>
-<node pkg="MD03ARIA" type="driver_neu" name="driver_neu" output="screen"/>
-<node pkg="MD03ARIA" type="teleoperation_neu" name="teleoperation_neu" output="screen"/>
-<node pkg="odometry" type="odom_2013" name="odom_2013" output="screen"/>
-</launch>

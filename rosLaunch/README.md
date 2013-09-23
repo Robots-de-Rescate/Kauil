@@ -12,4 +12,4 @@ El paquete rosLaunch contiene el archivo *.launch* que tiene como parametros los
 
 Para correr el archivo *.launch*: 
 
-<pre><code>$roslaunch rosLaunch kauilNodes.launch</code></pre>
+<pre><code>$roslaunch rosLaunch/kauilNodes.launch</code></pre>
