@@ -114,7 +114,7 @@ void teleop_Callback(const MD03ARIA::Reg::ConstPtr& msg)
     std::cout << "This was the speed of B0\n";
     
     write(fd, sbuf_speedB0, 8);
-    usleep(1000);
+    //usleep(1000);
 
     r = read(fd, sbuf_speedB0, 1);
     if (r < 0)
@@ -141,7 +141,7 @@ void teleop_Callback(const MD03ARIA::Reg::ConstPtr& msg)
     std::cout << "This was the direction of B0\n";
 
     write(fd, sbuf_directionB0, 8);
-    usleep(1000);
+    //usleep(1000);
 
     r = read(fd, sbuf_directionB0, 1);
     if (r < 0)
@@ -168,7 +168,7 @@ void teleop_Callback(const MD03ARIA::Reg::ConstPtr& msg)
     std::cout << "This was the speed of B2\n";
     
     write(fd, sbuf_speedB2, 8);
-    usleep(1000);
+    //usleep(1000);
 
     r = read(fd, sbuf_speedB2, 1);
     if (r < 0)
@@ -197,7 +197,7 @@ void teleop_Callback(const MD03ARIA::Reg::ConstPtr& msg)
     std::cout << "This was the direction of B2\n";
 
     write(fd, sbuf_directionB2, 8);
-    usleep(1000);
+    //usleep(1000);
 
     r = read(fd, sbuf_directionB2, 1);
     if (r < 0)

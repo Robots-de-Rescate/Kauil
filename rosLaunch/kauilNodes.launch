@@ -1,5 +1,6 @@
 <launch>
-<node pkg="MD03ARIA" type="driver_neu" name="driver_neu" output="screen"/>
-<node pkg="MD03ARIA" type="teleoperation_neu" name="teleoperation_neu" output="screen"/>
-<node pkg="odometry" type="odom_2013" name="odom_2013" output="screen"/>
+<machine name="robot" address="robot.local" user="kauil_intel" password="261189"/>
+<node pkg="MD03ARIA" type="teleoperation_neu" name="teleoperation_neu" output="screen" />
+<node pkg="MD03ARIA" type="driver_neu" name="driver_neu" output="screen" machine="robot"/>
+<node pkg="odometry" type="odom_2013" name="odom_2013" output="screen" machine="robot"/>
 </launch>

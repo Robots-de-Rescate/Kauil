@@ -212,7 +212,7 @@ open_port(void)
 {
 int fd;
 // File descriptor for the port
-fd = open("/dev/ttyACM0", O_RDWR | O_NOCTTY);
+fd = open(argv[1], O_RDWR | O_NOCTTY);
 if (fd == -1)
 {
 perror("open_port: Unable to open /dev/ttyACM0 - ");
