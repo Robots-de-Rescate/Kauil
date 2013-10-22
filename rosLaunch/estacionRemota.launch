@@ -1,0 +1,3 @@
+<launch>
+<node pkg="MD03ARIA" type="teleoperation_neu" name="teleoperation_neu" output="screen" />
+</launch>
