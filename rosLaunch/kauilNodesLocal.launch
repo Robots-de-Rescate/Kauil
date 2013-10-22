@@ -1,10 +1,10 @@
 <launch>
-<node pkg="rosserial_python" type="serial_node.py" output="screen">
-    <param name="~port" value="$(env ArduinoPort)" />
+<node pkg="rosserial_python" type="serial_node.py" name="arduino_node" output="screen">
+    <param name="~port" value="$(env ARDUINO_PORT)" />
 </node>
 <node pkg="MD03ARIA" type="teleoperation_neu" name="teleoperation_neu" output="screen" />
 <node pkg="MD03ARIA" type="driver_neu" name="driver_neu" output="screen">
-	<param value="$(env MD03ARIAPort)" />
+	<param value="$(env ISS_PORT)" />
 </node>
 <node pkg="odometry" type="odom_2013" name="odom_2013" output="screen"/>
 </launch>
