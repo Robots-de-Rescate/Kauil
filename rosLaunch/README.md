@@ -1,7 +1,7 @@
 Paquete rosLaunch
 ==============
 
-El paquete [roslaunch](http://wiki.ros.org/roslaunch) es una herramienta que nos sirve para levantar multiples nodos de ROS de manera local o remotamente por SSH. La computadora del robot Kauil contiene un script que se incializa al prender y ejecutará el archivo *.launch*, por lo que no es necario ejecutar el archivo remotamente por SSH. Cada archivo *.launch* corresponde a una computadora diferente.
+El paquete [roslaunch](http://wiki.ros.org/roslaunch) es una herramienta que nos sirve para levantar multiples nodos de ROS de manera local o remotamente por SSH. La computadora del robot Kauil contiene un script que se incializa al prender y ejecutará el archivo *.launch*, por lo que no es necario ejecutar el archivo remotamente por SSH. Cada archivo *.launch* corresponde a una computadora diferente. 
 
 El paquete rosLaunch contiene el archivo *.launch* que tiene como parametros los nodos que se estan utilizando hasta el momento, los cuales son:
 
