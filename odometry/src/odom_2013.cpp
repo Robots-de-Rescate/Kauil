@@ -119,14 +119,14 @@ ROS_INFO("\n At the beginning of the loop X_total: [%f]\n", x_total);
   v_y=y_total/dt;
   v_theta=theta_total/dt;
 
-ROS_INFO("delta_X is equal to: %f \n", delta_x);
+/*ROS_INFO("delta_X is equal to: %f \n", delta_x);
 ROS_INFO("delta_Y is equal to: %f \n", delta_y);
 ROS_INFO("delta_Theta is equal to: %f \n", delta_theta);
 ROS_INFO("X is equal to: %f \n", x_total);
 ROS_INFO("Y is equal to: %f \n", y_total);
 ROS_INFO("Theta is equal to: %f \n", theta_total);
 ROS_INFO("Speeds: vx[%f] vy[%f] vth[%f] \n", v_x,v_y,v_theta);
-
+*/
     //since all odometry is 6DOF we'll need a quaternion created from yaw
     geometry_msgs::Quaternion odom_quat = tf::createQuaternionMsgFromYaw(theta_total);
     
