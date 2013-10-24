@@ -1,10 +1,6 @@
 #include <ros.h>
 #include <encoder/encoder.h>
 
-//falta dato de direccion
-//para ello generar un mensaje que contenga dos parametros
-// es mas conveniente usar un solo publisher (que contenga los 4 datos)
-
 //Set up the ros node and publisher
 encoder::encoder encoder_msg;
 ros::Publisher pub_encoder("encoder", &encoder_msg);
@@ -22,17 +18,8 @@ volatile bool _RightEncoderBSet;
 volatile int _RightEncoderTicks = 0;
 //volatile bool direction ;
 
-
-
-
-
-
 void setup()
 {
- // Serial.begin(9600);
-  // Quadrature encoders
-  // Left encoder
- // pinMode(c_LeftEncoderPinA, INPUT);      // sets pin A as input
   pinMode(c_LeftEncoderPinB, INPUT);      // sets pin B left encoder as input
   pinMode(c_RightEncoderPinB, INPUT);      // sets pin B right encoder as input
   attachInterrupt(c_LeftEncoderPinA, HandleLeftMotorInterrupt1, RISING);
@@ -44,14 +31,8 @@ void setup()
    nh.advertise(pub_encoder);
 }
 
-
 void loop()
 {
-
-
-
-//if (Serial.available() > 0)
-    //{
        encoder_msg.der=_RightEncoderTicks;
        encoder_msg.izq=_LeftEncoderTicks;
        pub_encoder.publish(&encoder_msg);
@@ -59,16 +40,7 @@ void loop()
        _RightEncoderTicks=0 ;
        nh.spinOnce();
        delay (100) ;
-    //}
-
-
-
  }
-
-
-
-
-
 
 // Interrupt service routines for the left motor's quadrature encoder
 void HandleLeftMotorInterrupt1()

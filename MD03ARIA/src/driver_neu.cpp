@@ -14,7 +14,7 @@
 
 using namespace std;
 
-int open_port(void);
+int open_port(char * port_path);
 int display_mode(void);
 void str2bin(const std::string&, unsigned char);
 void teleop_Callback(const MD03ARIA::Reg::ConstPtr&);
@@ -22,11 +22,14 @@ void teleop_Callback(const MD03ARIA::Reg::ConstPtr&);
 
 struct termios options;
 
+char * port_path;
+
 int
 main(int argc, char **argv)
 {
 
 
+port_path = argv[1];
 ros::init(argc, argv, "MD03subscriber");//nombre del nodo
 ros::NodeHandle n;
 
@@ -61,7 +64,7 @@ void teleop_Callback(const MD03ARIA::Reg::ConstPtr& msg)
  int B2speed = msg->B2_speed;
  int B2direction = msg->B2_direction; 
  
- int fd = open_port();
+ int fd = open_port(port_path);
  int r = 0;
  
  string mystring_speedB0;
@@ -87,14 +90,14 @@ void teleop_Callback(const MD03ARIA::Reg::ConstPtr& msg)
  unsigned char sbuf_modeB2[10];
  
  
- ROS_INFO("The speed of B0: [%i]\n", B0speed); //printf de ROS
+/* ROS_INFO("The speed of B0: [%i]\n", B0speed); //printf de ROS
  ROS_INFO("The direction f B0: [%i]\n", B0direction);
  ROS_INFO("The speed of B2: [%i]\n", B2speed);
  ROS_INFO("The direction of B2: [%i]\n", B2direction);
-
+*/
  stream_speedB0 << hex << B0speed;
  mystring_speedB0 = stream_speedB0.str(); 
- ROS_INFO("\nThe hexadecimal speed of B0: [%s]\n", mystring_speedB0.c_str()); 
+//ROS_INFO("\nThe hexadecimal speed of B0: [%s]\n", mystring_speedB0.c_str()); 
 
 {
     str2bin(mystring_speedB0, sbuf_speedB0);
@@ -208,11 +211,11 @@ void teleop_Callback(const MD03ARIA::Reg::ConstPtr& msg)
 
 
 int
-open_port(void)
+open_port(char * port_path)
 {
 int fd;
 // File descriptor for the port
-fd = open(argv[1], O_RDWR | O_NOCTTY);
+fd = open(port_path, O_RDWR | O_NOCTTY);
 if (fd == -1)
 {
 perror("open_port: Unable to open /dev/ttyACM0 - ");
