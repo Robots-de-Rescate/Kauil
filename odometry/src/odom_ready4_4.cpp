@@ -50,8 +50,8 @@ void encoderCallback(const  std_msgs::ColorRGBA::ConstPtr& encoder)
  
  float pulse_l = encoder->g;
 
-  ROS_INFO("\n The data of r is: [%f]\n", pulse_r); 
-  ROS_INFO("\n The data of g is: [%f]\n", pulse_l); 
+ // ROS_INFO("\n The data of r is: [%f]\n", pulse_r); 
+ //  ROS_INFO("\n The data of g is: [%f]\n", pulse_l); 
  
   float th = 0.0; 	//angulo de todo el movil < rad >
   float vk = 0.0; 	//velocidad del movil en el centro < m/s >
@@ -81,7 +81,7 @@ void encoderCallback(const  std_msgs::ColorRGBA::ConstPtr& encoder)
     current_time = ros::Time::now();
     
     float dt = (current_time - last_time).toSec(); // time differential
-    ROS_INFO("\n The time delta is: [%f]\n", dt); 
+    //ROS_INFO("\n The time delta is: [%f]\n", dt); 
     
 
     float izq = pulse_l;   	//pulse_data section at end
@@ -90,8 +90,8 @@ void encoderCallback(const  std_msgs::ColorRGBA::ConstPtr& encoder)
   sl=(izq*2*PI/Ce*nu)*(PI*d);//left displacement
   sr=(der*2*PI/Ce*nu)*(PI*d);//right displacement
   
-  ROS_INFO("sl : [%f]\n",sl);
-  ROS_INFO("sr : [%f]\n",sr);
+//  ROS_INFO("sl : [%f]\n",sl);
+//  ROS_INFO("sr : [%f]\n",sr);
   
   if (izq!=0 && der!=0) //both motors spinning (rotation center is center of robot)
   {
@@ -106,8 +106,8 @@ void encoderCallback(const  std_msgs::ColorRGBA::ConstPtr& encoder)
   		unsigned int uizq = izq;
   		unsigned int uder = der;
   	
-  		ROS_INFO("uizq : [%d]\n",uizq);
-  		ROS_INFO("uder : [%d]\n",uder);
+  		//ROS_INFO("uizq : [%d]\n",uizq);
+  		//ROS_INFO("uder : [%d]\n",uder);
   		http://mail.google.com/mail/
   	
   		if (uder > uizq) {
@@ -163,13 +163,13 @@ void encoderCallback(const  std_msgs::ColorRGBA::ConstPtr& encoder)
         global_y=y;
        
 
-ROS_INFO("X is equal to: %f \n", x);
+/*ROS_INFO("X is equal to: %f \n", x);
 ROS_INFO("Y is equal to: %f \n", y);
 ROS_INFO("Theta is equal to: %f \n", th);
 ROS_INFO("Speeds: vk[%f] vth[%f] \n", vk, vth);
 ROS_INFO("Speeds: vx[%f] vy[%f] \n", vx, vy);
 ROS_INFO("Theta_global: %f \n", th_t);
-
+*/
 
 
 
@@ -184,7 +184,7 @@ ROS_INFO("Theta_global: %f \n", th_t);
     }
 
 
-   ROS_INFO("\nodom_quat is: x:%f y:%f z:%f w:%f \n",odom_quat.x, odom_quat.y, odom_quat.z, odom_quat.w);
+   //ROS_INFO("\nodom_quat is: x:%f y:%f z:%f w:%f \n",odom_quat.x, odom_quat.y, odom_quat.z, odom_quat.w);
 
     //first, we'll publish the transform over tf
    /* geometry_msgs::TransformStamped odom_trans;

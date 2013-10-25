@@ -79,10 +79,10 @@ void encoderCallback(const encoder::encoder::ConstPtr& encoder)
     ros::spinOnce();        // check for incoming messages
     current_time = ros::Time::now();
     
-ROS_INFO("\n At the beginning of the loop X_total: [%f]\n", x_total); 
+//ROS_INFO("\n At the beginning of the loop X_total: [%f]\n", x_total); 
 
     float dt = (current_time - last_time).toSec(); // time differential
-    ROS_INFO("\n The time delta is: [%f]\n", dt); 
+//    ROS_INFO("\n The time delta is: [%f]\n", dt); 
     
     float izq = pulse_l;   	//pulse_data section at end
     float der = pulse_r;
@@ -90,8 +90,8 @@ ROS_INFO("\n At the beginning of the loop X_total: [%f]\n", x_total);
   sl=(izq/(Ce*nu))*(rc);//left displacement (in m)
   sr=(der/(Ce*nu))*(rc);//right displacement (in m)
   
-  ROS_INFO("sl : [%f]\n",sl);
-  ROS_INFO("sr : [%f]\n",sr);
+//  ROS_INFO("sl : [%f]\n",sl);
+//  ROS_INFO("sr : [%f]\n",sr);
   
   if (izq!=0 && der!=0) //both motors spinning (rotation center is center of robot)
     {
