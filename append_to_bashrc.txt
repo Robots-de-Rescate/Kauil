@@ -1,7 +1,0 @@
-Copiar al .bashrc ubicado en home las siguientes líneas al final para que la configuración de ROS sea la misma en todas las máquinas.
-
-source /opt/ros/fuerte/setup.bash
-export ROS_PACKAGE_PATH=~/fuerte_workspace:$ROS_PACKAGE_PATH
-export ROS_WORKSPACE=~/fuerte_workspace
-export ROS_HOSTNAME=192.168.10.5
-export ROS_MASTER_URI=http://192.168.10.5:11311
