@@ -50,9 +50,9 @@ void HandleLeftMotorInterrupt1()
 
   // and adjust counter + if A leads B
   if (_LeftEncoderBSet==0)
-    _LeftEncoderTicks += 1;
+    _LeftEncoderTicks -= 1;
   else
-    _LeftEncoderTicks -=1;
+    _LeftEncoderTicks +=1;
 
 }
 

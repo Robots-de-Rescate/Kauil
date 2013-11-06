@@ -15,16 +15,9 @@
 
 #define PI 3.14159265
 
-ros::NodeHandle n;
-float delta_x = 0;
-float delta_y = 0;
-float delta_theta = 0;
-float x_total;
-float y_total;
-float theta_total;
-float v_x = 0;
-float v_y = 0;
-float v_theta = 0;
+float x_total=0;
+float y_total=0;
+float theta_total=0;
 ros::Time current_time, last_time;
 
 void encoderCallback(const encoder::encoder::ConstPtr&);
@@ -32,6 +25,7 @@ void encoderCallback(const encoder::encoder::ConstPtr&);
 int main(int argc, char** argv) {
 
     ros::init(argc, argv, "odometry_publisher");
+    ros::NodeHandle n;
     last_time = ros::Time::now();
     ros::Subscriber sub = n.subscribe("/encoder", 1, encoderCallback);
     ros::spin();
@@ -42,13 +36,21 @@ int main(int argc, char** argv) {
 
 void encoderCallback(const encoder::encoder::ConstPtr& encoder) {
 
+    ros::NodeHandle n;
     ros::Publisher odom_pub = n.advertise<nav_msgs::Odometry>("odom", 50);
     tf::TransformBroadcaster odom_broadcaster;
 
     float pulse_r = (float)encoder->der;
     float pulse_l = (float)encoder->izq;
 
+    float delta_x = 0;
+    float delta_y = 0;
+    float delta_theta = 0;
     double dt = 0.0; //defined ahead with differential of ros::Time
+    float v_x = 0;
+    float v_y = 0;
+    float v_theta = 0;
+
     float Ce = 5.092958179; //pulsos x rad
     float nu = 48.75;   //relacion de transmision
     float L = 0.3;  //Distace between motors < m >
@@ -58,29 +60,31 @@ void encoderCallback(const encoder::encoder::ConstPtr& encoder) {
 
     current_time = ros::Time::now();
 
-    ros::Rate r(10);
+    ros::Rate r(1);
     while(n.ok()) {
 
         ros::spinOnce();        // check for incoming messages
 
         dt = (current_time - last_time).toSec(); // time differential
 
-        sl=(pulse_r/(Ce*nu))*(rc);//left displacement (in m)
-        sr=(pulse_l/(Ce*nu))*(rc);//right displacement (in m)
+        sl=(pulse_l/(Ce*nu))*(rc);//left displacement (in m)
+        sr=(pulse_r/(Ce*nu))*(rc);//right displacement (in m)
 
-        delta_theta=(sl-sr)/L;
-        delta_x=((sr+sl)*(sin(delta_theta)))/2;
-        delta_y=((sr+sl)*(cos(delta_theta)))/2;
+        if(pulse_r!=0 || pulse_l!=0) {
+            delta_theta=(sl-sr)/0.3;
+            delta_x=((sr+sl)*(sin(delta_theta)))/2;
+            delta_y=((sr+sl)*(cos(delta_theta)))/2;
 
-        //global position and orientation
-        x_total+=delta_x;
-        y_total+=delta_y;
-        theta_total+=delta_theta;
+            //global position and orientation
+            x_total+=delta_x;
+            y_total+=delta_y;
+            theta_total+=delta_theta;
 
-        //speeds
-        v_x=x_total/dt;
-        v_y=y_total/dt;
-        v_theta=theta_total/dt;
+            //speeds
+            v_x=x_total/dt;
+            v_y=y_total/dt;
+            v_theta=theta_total/dt;
+        }
 
         //since all odometry is 6DOF we'll need a quaternion created from yaw
         geometry_msgs::Quaternion odom_quat = tf::createQuaternionMsgFromYaw(theta_total);
