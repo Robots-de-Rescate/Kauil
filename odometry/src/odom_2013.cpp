@@ -7,7 +7,6 @@
 #include <std_msgs/ColorRGBA.h>
 
 #include "math.h"
-#include <odometry/encoder.h>
 #include <std_msgs/Int16.h>
 #include <geometry_msgs/Pose.h>
 #include <geometry_msgs/Point.h>
@@ -40,8 +39,8 @@ void encoderCallback(const encoder::encoder::ConstPtr& encoder) {
     ros::Publisher odom_pub = n.advertise<nav_msgs::Odometry>("odom", 50);
     tf::TransformBroadcaster odom_broadcaster;
 
-    float pulse_r = (float)encoder->der;
-    float pulse_l = (float)encoder->izq;
+    float pulse_r = (float)(encoder->der);
+    float pulse_l = (float)(encoder->izq);
 
     float delta_x = 0;
     float delta_y = 0;
@@ -60,7 +59,7 @@ void encoderCallback(const encoder::encoder::ConstPtr& encoder) {
 
     current_time = ros::Time::now();
 
-    ros::Rate r(1);
+    ros::Rate r(20);
     while(n.ok()) {
 
         ros::spinOnce();        // check for incoming messages
@@ -72,8 +71,8 @@ void encoderCallback(const encoder::encoder::ConstPtr& encoder) {
 
         if(pulse_r!=0 || pulse_l!=0) {
             delta_theta=(sl-sr)/0.3;
-            delta_x=((sr+sl)*(sin(delta_theta)))/2;
-            delta_y=((sr+sl)*(cos(delta_theta)))/2;
+            delta_x=((sr+sl)*(sin(theta_total)))/2;
+            delta_y=((sr+sl)*(cos(theta_total)))/2;
 
             //global position and orientation
             x_total+=delta_x;
@@ -84,6 +83,7 @@ void encoderCallback(const encoder::encoder::ConstPtr& encoder) {
             v_x=x_total/dt;
             v_y=y_total/dt;
             v_theta=theta_total/dt;
+	ROS_INFO("r_pulse: %e l_pulse: %e theta: %e\n", x_total, y_total, theta_total);
         }
 
         //since all odometry is 6DOF we'll need a quaternion created from yaw
