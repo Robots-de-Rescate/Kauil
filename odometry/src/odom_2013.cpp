@@ -51,8 +51,8 @@ void encoderCallback(const encoder::encoder::ConstPtr& encoder) {
     float v_theta = 0;
 
     float Ce = 5.092958179; //pulsos x rad
-    float nu = 48.75;   //relacion de transmision
-    float L = 0.3;  //Distace between motors < m >
+    float nu = 97;   //relacion de transmision
+    float L = 0.36;  //Distace between motors < m >
     float rc = 0.06;  //pulley diameter < m >
     float sl = 0;
     float sr = 0;    //arc length < m >
