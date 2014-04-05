@@ -113,6 +113,10 @@ MD03teleop::keyboardLoop()
   int B0_turn=0;
   int B2_speed=0;
   int B2_turn=0;
+  int B4_speed=0;
+  int B4_turn=0;
+  int B6_speed=0;
+  int B6_turn=0;
 
   tcgetattr(kfd, &cooked);
   memcpy(&raw, &cooked, sizeof(struct termios));
@@ -123,12 +127,14 @@ MD03teleop::keyboardLoop()
 
   puts("Reading from keyboard");
   puts("-------------------------------------------------------------------------------");
-  puts("j/l : increase/decrease max linear speed by 10%");
-  puts("m: set to maximum speed");
+  puts("w/x : increase/decrease max linear speed by 10%");
+  puts("e: set to maximum speed");
   puts("--------------------------------------------------------------------------------");
   puts("Moving around:");
   puts(" r=shoulder forward v=elbow forward t=shoulder backwards");
   puts(" b=elbow comma=go forward ");
+  puts("  u=turn left              i=go forward          o=turn right");
+  puts("                           k=go backwards                    ");
   puts(" m=turn left and go backwards ,=go backwards .=turn right and go backwards");
   puts(" anything else : stop");
   puts("--------------------------------------------------------------------------------");
@@ -161,42 +167,70 @@ MD03teleop::keyboardLoop()
 
     switch(c)
     {
-      case KEYCODE_R:
+      case KEYCODE_I:
+        B0_turn = 1;
+        B0_speed = 1;
+        B2_turn = 1;
+        B2_speed = 1;
+        dirty = true;
+        break;
+      case KEYCODE_O:
         B0_turn = 1;
         B0_speed = 1;
         B2_turn = 0;
         B2_speed = 0;
         dirty = true;
         break;
-      case KEYCODE_V:
+      case KEYCODE_U:
         B0_turn = 0;
         B0_speed = 0;
         B2_turn = 1;
         B2_speed = 1;
         dirty = true;
         break;
-      case KEYCODE_T:
+      case KEYCODE_K:
         B0_turn = 2;
         B0_speed = 1;
-        B2_turn = 0;
-        B2_speed = 0;
-        dirty = true;
-        break;
-      case KEYCODE_B:
-        B0_turn = 0;
-        B0_speed = 0;
         B2_turn = 2;
         B2_speed = 1;
         dirty = true;
         break;
-      case KEYCODE_COMMA:
-        B0_turn = 1;
-        B0_speed = 1;
-        B2_turn = 1;
-        B2_speed = 1;
+      case KEYCODE_R:
+        B4_turn = 1;
+        B4_speed = 1;
+        B6_turn = 0;
+        B6_speed = 0;
         dirty = true;
         break;
-      case KEYCODE_J:
+      case KEYCODE_V:
+        B4_turn = 0;
+        B4_speed = 0;
+        B6_turn = 1;
+        B6_speed = 1;
+        dirty = true;
+        break;
+      case KEYCODE_T:
+        B4_turn = 2;
+        B4_speed = 1;
+        B6_turn = 0;
+        B6_speed = 0;
+        dirty = true;
+        break;
+      case KEYCODE_B:
+        B4_turn = 0;
+        B4_speed = 0;
+        B6_turn = 2;
+        B6_speed = 1;
+        dirty = true;
+        break;
+      case KEYCODE_COMMA:
+        B4_turn = 1;
+        B4_speed = 1;
+        B6_turn = 1;
+        B6_speed = 1;
+        dirty = true;
+        break;
+      case KEYCODE_W:
          if (max_speed>=255)
           {
           max_speed=255;
@@ -210,7 +244,7 @@ MD03teleop::keyboardLoop()
         if(always_command)
           dirty = true;
         break;
-      case KEYCODE_L:
+      case KEYCODE_X:
         if (max_speed==0)
          {
           max_speed=0;
@@ -221,9 +255,11 @@ MD03teleop::keyboardLoop()
         if(always_command)
           dirty = true;
         break;
-case KEYCODE_M:
+case KEYCODE_E:
         B0_speed = 255;
         B2_speed = 255;
+        B4_speed = 255;
+        B6_speed = 255;
         if(always_command)
           dirty = true;
         break;
@@ -233,6 +269,10 @@ case KEYCODE_M:
       B0_turn = 0;
       B2_speed = 0;
       B2_turn = 0;
+      B4_speed = 0;
+      B4_turn = 0;
+      B6_speed = 0;
+      B6_turn = 0;
       dirty = true;printf ("the value of variable max_speed= %i\n\n", max_speed);
     }
 
@@ -242,11 +282,19 @@ if (dirty == true)
       cmdvel.B0_direction = B0_turn * max_turn;
       cmdvel.B2_speed = B2_speed * max_speed;
       cmdvel.B2_direction = B2_turn * max_turn;
+      cmdvel.B4_speed = B4_speed * max_speed;
+      cmdvel.B4_direction = B4_turn * max_turn;
+      cmdvel.B6_speed = B6_speed * max_speed;
+      cmdvel.B6_direction = B6_turn * max_turn;
 
 printf ("the cmdvel of B0 speed is equal to= %i \n", cmdvel.B0_speed);
 printf ("the cmdvel of B0 direction is equal to= %i \n", cmdvel.B0_direction);
 printf ("the cmdvel of B2 speed is equal to= %i \n", cmdvel.B2_speed);
 printf ("the cmdvel of B2 direction is equal to= %i \n", cmdvel.B2_direction);
+printf ("the cmdvel of B4 speed is equal to= %i \n", cmdvel.B4_speed);
+printf ("the cmdvel of B4 direction is equal to= %i \n", cmdvel.B4_direction);
+printf ("the cmdvel of B6 speed is equal to= %i \n", cmdvel.B6_speed);
+printf ("the cmdvel of B6 direction is equal to= %i \n", cmdvel.B6_direction);
 
 pub.publish(cmdvel);
 
@@ -315,6 +363,5 @@ fcntl(fd, F_SETFL, FNDELAY);
 }
 return (fd);
 }
-
 
 

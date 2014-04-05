@@ -26,6 +26,26 @@
     :reader B2_speed
     :initarg :B2_speed
     :type cl:integer
+    :initform 0)
+   (B4_direction
+    :reader B4_direction
+    :initarg :B4_direction
+    :type cl:integer
+    :initform 0)
+   (B4_speed
+    :reader B4_speed
+    :initarg :B4_speed
+    :type cl:integer
+    :initform 0)
+   (B6_direction
+    :reader B6_direction
+    :initarg :B6_direction
+    :type cl:integer
+    :initform 0)
+   (B6_speed
+    :reader B6_speed
+    :initarg :B6_speed
+    :type cl:integer
     :initform 0))
 )
 
@@ -56,6 +76,26 @@
 (cl:defmethod B2_speed-val ((m <Reg>))
   (roslisp-msg-protocol:msg-deprecation-warning "Using old-style slot reader MD03ARM-msg:B2_speed-val is deprecated.  Use MD03ARM-msg:B2_speed instead.")
   (B2_speed m))
+
+(cl:ensure-generic-function 'B4_direction-val :lambda-list '(m))
+(cl:defmethod B4_direction-val ((m <Reg>))
+  (roslisp-msg-protocol:msg-deprecation-warning "Using old-style slot reader MD03ARM-msg:B4_direction-val is deprecated.  Use MD03ARM-msg:B4_direction instead.")
+  (B4_direction m))
+
+(cl:ensure-generic-function 'B4_speed-val :lambda-list '(m))
+(cl:defmethod B4_speed-val ((m <Reg>))
+  (roslisp-msg-protocol:msg-deprecation-warning "Using old-style slot reader MD03ARM-msg:B4_speed-val is deprecated.  Use MD03ARM-msg:B4_speed instead.")
+  (B4_speed m))
+
+(cl:ensure-generic-function 'B6_direction-val :lambda-list '(m))
+(cl:defmethod B6_direction-val ((m <Reg>))
+  (roslisp-msg-protocol:msg-deprecation-warning "Using old-style slot reader MD03ARM-msg:B6_direction-val is deprecated.  Use MD03ARM-msg:B6_direction instead.")
+  (B6_direction m))
+
+(cl:ensure-generic-function 'B6_speed-val :lambda-list '(m))
+(cl:defmethod B6_speed-val ((m <Reg>))
+  (roslisp-msg-protocol:msg-deprecation-warning "Using old-style slot reader MD03ARM-msg:B6_speed-val is deprecated.  Use MD03ARM-msg:B6_speed instead.")
+  (B6_speed m))
 (cl:defmethod roslisp-msg-protocol:serialize ((msg <Reg>) ostream)
   "Serializes a message object of type '<Reg>"
   (cl:let* ((signed (cl:slot-value msg 'B0_direction)) (unsigned (cl:if (cl:< signed 0) (cl:+ signed 18446744073709551616) signed)))
@@ -89,6 +129,46 @@
     (cl:write-byte (cl:ldb (cl:byte 8 56) unsigned) ostream)
     )
   (cl:let* ((signed (cl:slot-value msg 'B2_speed)) (unsigned (cl:if (cl:< signed 0) (cl:+ signed 18446744073709551616) signed)))
+    (cl:write-byte (cl:ldb (cl:byte 8 0) unsigned) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 8) unsigned) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 16) unsigned) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 24) unsigned) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 32) unsigned) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 40) unsigned) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 48) unsigned) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 56) unsigned) ostream)
+    )
+  (cl:let* ((signed (cl:slot-value msg 'B4_direction)) (unsigned (cl:if (cl:< signed 0) (cl:+ signed 18446744073709551616) signed)))
+    (cl:write-byte (cl:ldb (cl:byte 8 0) unsigned) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 8) unsigned) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 16) unsigned) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 24) unsigned) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 32) unsigned) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 40) unsigned) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 48) unsigned) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 56) unsigned) ostream)
+    )
+  (cl:let* ((signed (cl:slot-value msg 'B4_speed)) (unsigned (cl:if (cl:< signed 0) (cl:+ signed 18446744073709551616) signed)))
+    (cl:write-byte (cl:ldb (cl:byte 8 0) unsigned) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 8) unsigned) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 16) unsigned) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 24) unsigned) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 32) unsigned) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 40) unsigned) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 48) unsigned) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 56) unsigned) ostream)
+    )
+  (cl:let* ((signed (cl:slot-value msg 'B6_direction)) (unsigned (cl:if (cl:< signed 0) (cl:+ signed 18446744073709551616) signed)))
+    (cl:write-byte (cl:ldb (cl:byte 8 0) unsigned) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 8) unsigned) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 16) unsigned) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 24) unsigned) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 32) unsigned) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 40) unsigned) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 48) unsigned) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 56) unsigned) ostream)
+    )
+  (cl:let* ((signed (cl:slot-value msg 'B6_speed)) (unsigned (cl:if (cl:< signed 0) (cl:+ signed 18446744073709551616) signed)))
     (cl:write-byte (cl:ldb (cl:byte 8 0) unsigned) ostream)
     (cl:write-byte (cl:ldb (cl:byte 8 8) unsigned) ostream)
     (cl:write-byte (cl:ldb (cl:byte 8 16) unsigned) ostream)
@@ -141,6 +221,46 @@
       (cl:setf (cl:ldb (cl:byte 8 48) unsigned) (cl:read-byte istream))
       (cl:setf (cl:ldb (cl:byte 8 56) unsigned) (cl:read-byte istream))
       (cl:setf (cl:slot-value msg 'B2_speed) (cl:if (cl:< unsigned 9223372036854775808) unsigned (cl:- unsigned 18446744073709551616))))
+    (cl:let ((unsigned 0))
+      (cl:setf (cl:ldb (cl:byte 8 0) unsigned) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 8) unsigned) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 16) unsigned) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 24) unsigned) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 32) unsigned) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 40) unsigned) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 48) unsigned) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 56) unsigned) (cl:read-byte istream))
+      (cl:setf (cl:slot-value msg 'B4_direction) (cl:if (cl:< unsigned 9223372036854775808) unsigned (cl:- unsigned 18446744073709551616))))
+    (cl:let ((unsigned 0))
+      (cl:setf (cl:ldb (cl:byte 8 0) unsigned) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 8) unsigned) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 16) unsigned) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 24) unsigned) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 32) unsigned) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 40) unsigned) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 48) unsigned) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 56) unsigned) (cl:read-byte istream))
+      (cl:setf (cl:slot-value msg 'B4_speed) (cl:if (cl:< unsigned 9223372036854775808) unsigned (cl:- unsigned 18446744073709551616))))
+    (cl:let ((unsigned 0))
+      (cl:setf (cl:ldb (cl:byte 8 0) unsigned) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 8) unsigned) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 16) unsigned) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 24) unsigned) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 32) unsigned) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 40) unsigned) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 48) unsigned) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 56) unsigned) (cl:read-byte istream))
+      (cl:setf (cl:slot-value msg 'B6_direction) (cl:if (cl:< unsigned 9223372036854775808) unsigned (cl:- unsigned 18446744073709551616))))
+    (cl:let ((unsigned 0))
+      (cl:setf (cl:ldb (cl:byte 8 0) unsigned) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 8) unsigned) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 16) unsigned) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 24) unsigned) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 32) unsigned) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 40) unsigned) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 48) unsigned) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 56) unsigned) (cl:read-byte istream))
+      (cl:setf (cl:slot-value msg 'B6_speed) (cl:if (cl:< unsigned 9223372036854775808) unsigned (cl:- unsigned 18446744073709551616))))
   msg
 )
 (cl:defmethod roslisp-msg-protocol:ros-datatype ((msg (cl:eql '<Reg>)))
@@ -151,18 +271,22 @@
   "MD03ARM/Reg")
 (cl:defmethod roslisp-msg-protocol:md5sum ((type (cl:eql '<Reg>)))
   "Returns md5sum for a message object of type '<Reg>"
-  "8aa5d362ecee3cd4ca4534b5a5c89625")
+  "bab797c531c022f53404b77dfb5a648a")
 (cl:defmethod roslisp-msg-protocol:md5sum ((type (cl:eql 'Reg)))
   "Returns md5sum for a message object of type 'Reg"
-  "8aa5d362ecee3cd4ca4534b5a5c89625")
+  "bab797c531c022f53404b77dfb5a648a")
 (cl:defmethod roslisp-msg-protocol:message-definition ((type (cl:eql '<Reg>)))
   "Returns full string definition for message of type '<Reg>"
-  (cl:format cl:nil "int64 B0_direction~%int64 B0_speed~%int64 B2_direction~%int64 B2_speed~%~%~%"))
+  (cl:format cl:nil "int64 B0_direction~%int64 B0_speed~%int64 B2_direction~%int64 B2_speed~%int64 B4_direction~%int64 B4_speed~%int64 B6_direction~%int64 B6_speed~%~%~%"))
 (cl:defmethod roslisp-msg-protocol:message-definition ((type (cl:eql 'Reg)))
   "Returns full string definition for message of type 'Reg"
-  (cl:format cl:nil "int64 B0_direction~%int64 B0_speed~%int64 B2_direction~%int64 B2_speed~%~%~%"))
+  (cl:format cl:nil "int64 B0_direction~%int64 B0_speed~%int64 B2_direction~%int64 B2_speed~%int64 B4_direction~%int64 B4_speed~%int64 B6_direction~%int64 B6_speed~%~%~%"))
 (cl:defmethod roslisp-msg-protocol:serialization-length ((msg <Reg>))
   (cl:+ 0
+     8
+     8
+     8
+     8
      8
      8
      8
@@ -175,4 +299,8 @@
     (cl:cons ':B0_speed (B0_speed msg))
     (cl:cons ':B2_direction (B2_direction msg))
     (cl:cons ':B2_speed (B2_speed msg))
+    (cl:cons ':B4_direction (B4_direction msg))
+    (cl:cons ':B4_speed (B4_speed msg))
+    (cl:cons ':B6_direction (B6_direction msg))
+    (cl:cons ':B6_speed (B6_speed msg))
 ))

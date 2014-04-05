@@ -26,6 +26,10 @@ struct Reg_ {
   , B0_speed(0)
   , B2_direction(0)
   , B2_speed(0)
+  , B4_direction(0)
+  , B4_speed(0)
+  , B6_direction(0)
+  , B6_speed(0)
   {
   }
 
@@ -34,6 +38,10 @@ struct Reg_ {
   , B0_speed(0)
   , B2_direction(0)
   , B2_speed(0)
+  , B4_direction(0)
+  , B4_speed(0)
+  , B6_direction(0)
+  , B6_speed(0)
   {
   }
 
@@ -48,6 +56,18 @@ struct Reg_ {
 
   typedef int64_t _B2_speed_type;
   int64_t B2_speed;
+
+  typedef int64_t _B4_direction_type;
+  int64_t B4_direction;
+
+  typedef int64_t _B4_speed_type;
+  int64_t B4_speed;
+
+  typedef int64_t _B6_direction_type;
+  int64_t B6_direction;
+
+  typedef int64_t _B6_speed_type;
+  int64_t B6_speed;
 
 
   typedef boost::shared_ptr< ::MD03ARM::Reg_<ContainerAllocator> > Ptr;
@@ -78,12 +98,12 @@ template<class ContainerAllocator>
 struct MD5Sum< ::MD03ARM::Reg_<ContainerAllocator> > {
   static const char* value() 
   {
-    return "8aa5d362ecee3cd4ca4534b5a5c89625";
+    return "bab797c531c022f53404b77dfb5a648a";
   }
 
   static const char* value(const  ::MD03ARM::Reg_<ContainerAllocator> &) { return value(); } 
-  static const uint64_t static_value1 = 0x8aa5d362ecee3cd4ULL;
-  static const uint64_t static_value2 = 0xca4534b5a5c89625ULL;
+  static const uint64_t static_value1 = 0xbab797c531c022f5ULL;
+  static const uint64_t static_value2 = 0x3404b77dfb5a648aULL;
 };
 
 template<class ContainerAllocator>
@@ -104,6 +124,10 @@ struct Definition< ::MD03ARM::Reg_<ContainerAllocator> > {
 int64 B0_speed\n\
 int64 B2_direction\n\
 int64 B2_speed\n\
+int64 B4_direction\n\
+int64 B4_speed\n\
+int64 B6_direction\n\
+int64 B6_speed\n\
 \n\
 ";
   }
@@ -128,6 +152,10 @@ template<class ContainerAllocator> struct Serializer< ::MD03ARM::Reg_<ContainerA
     stream.next(m.B0_speed);
     stream.next(m.B2_direction);
     stream.next(m.B2_speed);
+    stream.next(m.B4_direction);
+    stream.next(m.B4_speed);
+    stream.next(m.B6_direction);
+    stream.next(m.B6_speed);
   }
 
   ROS_DECLARE_ALLINONE_SERIALIZER;
@@ -153,6 +181,14 @@ struct Printer< ::MD03ARM::Reg_<ContainerAllocator> >
     Printer<int64_t>::stream(s, indent + "  ", v.B2_direction);
     s << indent << "B2_speed: ";
     Printer<int64_t>::stream(s, indent + "  ", v.B2_speed);
+    s << indent << "B4_direction: ";
+    Printer<int64_t>::stream(s, indent + "  ", v.B4_direction);
+    s << indent << "B4_speed: ";
+    Printer<int64_t>::stream(s, indent + "  ", v.B4_speed);
+    s << indent << "B6_direction: ";
+    Printer<int64_t>::stream(s, indent + "  ", v.B6_direction);
+    s << indent << "B6_speed: ";
+    Printer<int64_t>::stream(s, indent + "  ", v.B6_speed);
   }
 };
 

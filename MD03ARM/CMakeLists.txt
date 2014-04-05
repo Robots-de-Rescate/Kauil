@@ -19,6 +19,7 @@ set(LIBRARY_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/lib)
 #uncomment if you have defined messages
 rosbuild_genmsg()
 rosbuild_add_executable(driver_arm src/driver_arm.cpp)
+rosbuild_add_executable(driver_neu src/driver_neu.cpp)
 rosbuild_add_executable(teleoperation_arm src/teleoperation_arm.cpp)
 #uncomment if you have defined services
 #rosbuild_gensrv()

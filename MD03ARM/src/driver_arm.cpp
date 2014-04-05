@@ -30,7 +30,7 @@ main(int argc, char **argv)
 
 
 port_path = argv[1];
-ros::init(argc, argv, "MD03subscriber");//nombre del nodo
+ros::init(argc, argv, "MD03subscriberarm");//nombre del nodo
 ros::NodeHandle n;
 
 ros::Subscriber sub_mode = n.subscribe("MD03_teleop", 1, teleop_Callback);//se subscribe al topico llamado MD03_teleop
@@ -59,150 +59,150 @@ void str2bin(const std::string& in, unsigned char out[])
 void teleop_Callback(const MD03ARM::Reg::ConstPtr& msg)
 {
 
- int B0speed = msg->B0_speed;
- int B0direction = msg->B0_direction;
- int B2speed = msg->B2_speed;
- int B2direction = msg->B2_direction;
+ int B4speed = msg->B4_speed;
+ int B4direction = msg->B4_direction;
+ int B6speed = msg->B6_speed;
+ int B6direction = msg->B6_direction;
  
  int fd = open_port(port_path);
  int r = 0;
  
- string mystring_speedB0;
- stringstream stream_speedB0;
- unsigned char sbuf_speedB0[10];
+ string mystring_speedB4;
+ stringstream stream_speedB4;
+ unsigned char sbuf_speedB4[10];
 
- string mystring_speedB2;
- stringstream stream_speedB2;
- unsigned char sbuf_speedB2[10];
+ string mystring_speedB6;
+ stringstream stream_speedB6;
+ unsigned char sbuf_speedB6[10];
 
 
- string mystring_directionB0;
- stringstream stream_directionB0;
- unsigned char sbuf_directionB0[10];
+ string mystring_directionB4;
+ stringstream stream_directionB4;
+ unsigned char sbuf_directionB4[10];
 
- string mystring_directionB2;
- stringstream stream_directionB2;
- unsigned char sbuf_directionB2[10];
+ string mystring_directionB6;
+ stringstream stream_directionB6;
+ unsigned char sbuf_directionB6[10];
 
  
- unsigned char sbuf_modeB0[10];
+ unsigned char sbuf_modeB4[10];
  
- unsigned char sbuf_modeB2[10];
+ unsigned char sbuf_modeB6[10];
  
  
-ROS_INFO("The speed of B0: [%i]\n", B0speed); //printf de ROS
-ROS_INFO("The direction f B0: [%i]\n", B0direction);
-ROS_INFO("The speed of B2: [%i]\n", B2speed);
-ROS_INFO("The direction of B2: [%i]\n", B2direction);
+ROS_INFO("The speed of B4: [%i]\n", B4speed); //printf de ROS
+ROS_INFO("The direction f B4: [%i]\n", B4direction);
+ROS_INFO("The speed of B6: [%i]\n", B6speed);
+ROS_INFO("The direction of B6: [%i]\n", B6direction);
 
- stream_speedB0 << hex << B0speed;
- mystring_speedB0 = stream_speedB0.str();
-ROS_INFO("\nThe hexadecimal speed of B0: [%s]\n", mystring_speedB0.c_str());
+ stream_speedB4 << hex << B4speed;
+ mystring_speedB4 = stream_speedB4.str();
+ROS_INFO("\nThe hexadecimal speed of B4: [%s]\n", mystring_speedB4.c_str());
 
 {
-    str2bin(mystring_speedB0, sbuf_speedB0);
+    str2bin(mystring_speedB4, sbuf_speedB4);
     std::cout << std::hex;
 
-   sbuf_speedB0[0] = 0x57;
-   sbuf_speedB0[1] = 0x01;
-   sbuf_speedB0[2] = 0x32;
-   sbuf_speedB0[3] = 0xB0;
-   sbuf_speedB0[4] = 0x02;
-   sbuf_speedB0[6] = 0x03;
-   sbuf_speedB0[7] = 0x00;
+   sbuf_speedB4[0] = 0x57;
+   sbuf_speedB4[1] = 0x01;
+   sbuf_speedB4[2] = 0x32;
+   sbuf_speedB4[3] = 0xB4;
+   sbuf_speedB4[4] = 0x02;
+   sbuf_speedB4[6] = 0x03;
+   sbuf_speedB4[7] = 0x00;
 
 //sbuf_speedB0[5]=dato de velocidad
 
-    std::copy(sbuf_speedB0, sbuf_speedB0+9, std::ostream_iterator<unsigned int>(std::cout, ", "));
-    std::cout << "This was the speed of B0\n";
+    std::copy(sbuf_speedB4, sbuf_speedB4+9, std::ostream_iterator<unsigned int>(std::cout, ", "));
+    std::cout << "This was the speed of B4\n";
     
-    write(fd, sbuf_speedB0, 8);
+    write(fd, sbuf_speedB4, 8);
     //usleep(1000);
 
-    r = read(fd, sbuf_speedB0, 1);
+    r = read(fd, sbuf_speedB4, 1);
     if (r < 0)
     printf("read() failed!!");
 }
 
- stream_directionB0 << hex << B0direction;
- mystring_directionB0 = stream_directionB0.str();
- ROS_INFO("\nThe hexadecimal direction of B0: [%s]\n", mystring_directionB0.c_str());
+ stream_directionB4 << hex << B4direction;
+ mystring_directionB4 = stream_directionB4.str();
+ ROS_INFO("\nThe hexadecimal direction of B4: [%s]\n", mystring_directionB4.c_str());
 
 {
-    str2bin(mystring_directionB0, sbuf_directionB0);
+    str2bin(mystring_directionB4, sbuf_directionB4);
     std::cout << std::hex;
 
-   sbuf_directionB0[0] = 0x57;
-   sbuf_directionB0[1] = 0x01;
-   sbuf_directionB0[2] = 0x32;
-   sbuf_directionB0[3] = 0xB0;
-   sbuf_directionB0[4] = 0x00;
-   sbuf_directionB0[6] = 0x03;
-   sbuf_directionB0[7] = 0x00;
+   sbuf_directionB4[0] = 0x57;
+   sbuf_directionB4[1] = 0x01;
+   sbuf_directionB4[2] = 0x32;
+   sbuf_directionB4[3] = 0xB4;
+   sbuf_directionB4[4] = 0x00;
+   sbuf_directionB4[6] = 0x03;
+   sbuf_directionB4[7] = 0x00;
 
-    std::copy(sbuf_directionB0, sbuf_directionB0+9, std::ostream_iterator<unsigned int>(std::cout, ", "));
-    std::cout << "This was the direction of B0\n";
+    std::copy(sbuf_directionB4, sbuf_directionB4+9, std::ostream_iterator<unsigned int>(std::cout, ", "));
+    std::cout << "This was the direction of B4\n";
 
-    write(fd, sbuf_directionB0, 8);
+    write(fd, sbuf_directionB4, 8);
     //usleep(1000);
 
-    r = read(fd, sbuf_directionB0, 1);
+    r = read(fd, sbuf_directionB4, 1);
     if (r < 0)
     printf("read() failed!!");
 }
  
- stream_speedB2 << hex << B2speed;
- mystring_speedB2 = stream_speedB2.str();
- ROS_INFO("\nThe hexadecimal speed of B2: [%s]\n", mystring_speedB2.c_str());
+ stream_speedB6 << hex << B6speed;
+ mystring_speedB6 = stream_speedB6.str();
+ ROS_INFO("\nThe hexadecimal speed of B6: [%s]\n", mystring_speedB6.c_str());
 
 {
-    str2bin(mystring_speedB2, sbuf_speedB2);
+    str2bin(mystring_speedB6, sbuf_speedB6);
     std::cout << std::hex;
 
-   sbuf_speedB2[0] = 0x57;
-   sbuf_speedB2[1] = 0x01;
-   sbuf_speedB2[2] = 0x32;
-   sbuf_speedB2[3] = 0xB2;
-   sbuf_speedB2[4] = 0x02;
-   sbuf_speedB2[6] = 0x03;
-   sbuf_speedB2[7] = 0x00;
+   sbuf_speedB6[0] = 0x57;
+   sbuf_speedB6[1] = 0x01;
+   sbuf_speedB6[2] = 0x32;
+   sbuf_speedB6[3] = 0xB6;
+   sbuf_speedB6[4] = 0x02;
+   sbuf_speedB6[6] = 0x03;
+   sbuf_speedB6[7] = 0x00;
 
-    std::copy(sbuf_speedB2, sbuf_speedB2+9, std::ostream_iterator<unsigned int>(std::cout, ", "));
-    std::cout << "This was the speed of B2\n";
+    std::copy(sbuf_speedB6, sbuf_speedB6+9, std::ostream_iterator<unsigned int>(std::cout, ", "));
+    std::cout << "This was the speed of B6\n";
     
-    write(fd, sbuf_speedB2, 8);
+    write(fd, sbuf_speedB6, 8);
     //usleep(1000);
 
-    r = read(fd, sbuf_speedB2, 1);
+    r = read(fd, sbuf_speedB6, 1);
     if (r < 0)
     printf("read() failed!!");
 }
 
 
- stream_directionB2 << hex << B2direction;
- mystring_directionB2 = stream_directionB2.str();
- ROS_INFO("\nThe hexadecimal direction of B2: [%s]\n", mystring_directionB2.c_str());
+ stream_directionB6 << hex << B6direction;
+ mystring_directionB6 = stream_directionB6.str();
+ ROS_INFO("\nThe hexadecimal direction of B6: [%s]\n", mystring_directionB6.c_str());
 
 
 {
-   str2bin(mystring_directionB2, sbuf_directionB2);
+   str2bin(mystring_directionB6, sbuf_directionB6);
     std::cout << std::hex;
 
-   sbuf_directionB2[0] = 0x57;
-   sbuf_directionB2[1] = 0x01;
-   sbuf_directionB2[2] = 0x32;
-   sbuf_directionB2[3] = 0xB2;
-   sbuf_directionB2[4] = 0x00;
-   sbuf_directionB2[6] = 0x03;
-   sbuf_directionB2[7] = 0x00;
+   sbuf_directionB6[0] = 0x57;
+   sbuf_directionB6[1] = 0x01;
+   sbuf_directionB6[2] = 0x32;
+   sbuf_directionB6[3] = 0xB6;
+   sbuf_directionB6[4] = 0x00;
+   sbuf_directionB6[6] = 0x03;
+   sbuf_directionB6[7] = 0x00;
 
-    std::copy(sbuf_directionB2, sbuf_directionB2+8, std::ostream_iterator<unsigned int>(std::cout, ", "));
-    std::cout << "This was the direction of B2\n";
+    std::copy(sbuf_directionB6, sbuf_directionB6+8, std::ostream_iterator<unsigned int>(std::cout, ", "));
+    std::cout << "This was the direction of B6\n";
 
-    write(fd, sbuf_directionB2, 8);
+    write(fd, sbuf_directionB6, 8);
     //usleep(1000);
 
-    r = read(fd, sbuf_directionB2, 1);
+    r = read(fd, sbuf_directionB6, 1);
     if (r < 0)
     printf("read() failed!!");
 }
@@ -250,9 +250,3 @@ fcntl(fd, F_SETFL, FNDELAY);
 }
 return (fd);
 }
-
-
-
-
-
-

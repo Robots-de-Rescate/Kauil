@@ -6,17 +6,21 @@ import struct
 
 
 class Reg(genpy.Message):
-  _md5sum = "8aa5d362ecee3cd4ca4534b5a5c89625"
+  _md5sum = "bab797c531c022f53404b77dfb5a648a"
   _type = "MD03ARM/Reg"
   _has_header = False #flag to mark the presence of a Header object
   _full_text = """int64 B0_direction
 int64 B0_speed
 int64 B2_direction
 int64 B2_speed
+int64 B4_direction
+int64 B4_speed
+int64 B6_direction
+int64 B6_speed
 
 """
-  __slots__ = ['B0_direction','B0_speed','B2_direction','B2_speed']
-  _slot_types = ['int64','int64','int64','int64']
+  __slots__ = ['B0_direction','B0_speed','B2_direction','B2_speed','B4_direction','B4_speed','B6_direction','B6_speed']
+  _slot_types = ['int64','int64','int64','int64','int64','int64','int64','int64']
 
   def __init__(self, *args, **kwds):
     """
@@ -26,7 +30,7 @@ int64 B2_speed
     changes.  You cannot mix in-order arguments and keyword arguments.
 
     The available fields are:
-       B0_direction,B0_speed,B2_direction,B2_speed
+       B0_direction,B0_speed,B2_direction,B2_speed,B4_direction,B4_speed,B6_direction,B6_speed
 
     :param args: complete set of field values, in .msg order
     :param kwds: use keyword arguments corresponding to message field names
@@ -43,11 +47,23 @@ int64 B2_speed
         self.B2_direction = 0
       if self.B2_speed is None:
         self.B2_speed = 0
+      if self.B4_direction is None:
+        self.B4_direction = 0
+      if self.B4_speed is None:
+        self.B4_speed = 0
+      if self.B6_direction is None:
+        self.B6_direction = 0
+      if self.B6_speed is None:
+        self.B6_speed = 0
     else:
       self.B0_direction = 0
       self.B0_speed = 0
       self.B2_direction = 0
       self.B2_speed = 0
+      self.B4_direction = 0
+      self.B4_speed = 0
+      self.B6_direction = 0
+      self.B6_speed = 0
 
   def _get_types(self):
     """
@@ -62,7 +78,7 @@ int64 B2_speed
     """
     try:
       _x = self
-      buff.write(_struct_4q.pack(_x.B0_direction, _x.B0_speed, _x.B2_direction, _x.B2_speed))
+      buff.write(_struct_8q.pack(_x.B0_direction, _x.B0_speed, _x.B2_direction, _x.B2_speed, _x.B4_direction, _x.B4_speed, _x.B6_direction, _x.B6_speed))
     except struct.error as se: self._check_types(se)
     except TypeError as te: self._check_types(te)
 
@@ -75,8 +91,8 @@ int64 B2_speed
       end = 0
       _x = self
       start = end
-      end += 32
-      (_x.B0_direction, _x.B0_speed, _x.B2_direction, _x.B2_speed,) = _struct_4q.unpack(str[start:end])
+      end += 64
+      (_x.B0_direction, _x.B0_speed, _x.B2_direction, _x.B2_speed, _x.B4_direction, _x.B4_speed, _x.B6_direction, _x.B6_speed,) = _struct_8q.unpack(str[start:end])
       return self
     except struct.error as e:
       raise genpy.DeserializationError(e) #most likely buffer underfill
@@ -90,7 +106,7 @@ int64 B2_speed
     """
     try:
       _x = self
-      buff.write(_struct_4q.pack(_x.B0_direction, _x.B0_speed, _x.B2_direction, _x.B2_speed))
+      buff.write(_struct_8q.pack(_x.B0_direction, _x.B0_speed, _x.B2_direction, _x.B2_speed, _x.B4_direction, _x.B4_speed, _x.B6_direction, _x.B6_speed))
     except struct.error as se: self._check_types(se)
     except TypeError as te: self._check_types(te)
 
@@ -104,11 +120,11 @@ int64 B2_speed
       end = 0
       _x = self
       start = end
-      end += 32
-      (_x.B0_direction, _x.B0_speed, _x.B2_direction, _x.B2_speed,) = _struct_4q.unpack(str[start:end])
+      end += 64
+      (_x.B0_direction, _x.B0_speed, _x.B2_direction, _x.B2_speed, _x.B4_direction, _x.B4_speed, _x.B6_direction, _x.B6_speed,) = _struct_8q.unpack(str[start:end])
       return self
     except struct.error as e:
       raise genpy.DeserializationError(e) #most likely buffer underfill
 
 _struct_I = genpy.struct_I
-_struct_4q = struct.Struct("<4q")
+_struct_8q = struct.Struct("<8q")
