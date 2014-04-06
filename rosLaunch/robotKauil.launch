@@ -1,6 +1,6 @@
 <launch>
 	<node pkg="rosserial_python" type="serial_node.py" args="$(env ARDUINO_PORT)" name="arduino_node" output="screen"/>
-	<node pkg="MD03ARIA" type="driver_neu" name="driver_neu" args="$(env ISS_PORT)" output="screen"/>
+	<node pkg="MD03ARIA" type="driver_neu" name="driver_neu" args="$(env ISS_PORT2)" output="screen"/>
 	<node pkg="odometry" type="odom_2013" name="odom_2013" output="screen"/>
 
 	<node pkg="hokuyo_node" type="hokuyo_node" name="hokuyo" output="screen">
