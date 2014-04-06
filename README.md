@@ -8,6 +8,8 @@ Paquetes hasta el momento:
 - **Encoder** - Definición del mensaje con el que publica Arduino y código que utiliza el microcontrolador.
 - **Odometry** - Calcula y publica la posición absoluta del robot, mensajes de tipo encoder.
 - **rosLaunch** - Contiene los archivos .launch necesarios para lanzar los nodos en el robot y la estación remota.
+- **MLX90620** - Contiene la interfaz gráfica del sensor térmico de los datos obtenidos por medio de la subscripcion al tópico que publica el microcontrolador.
+
 
 Configuraciones:
 --------------
