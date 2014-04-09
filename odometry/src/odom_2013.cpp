@@ -8,6 +8,7 @@
 
 #include "math.h"
 #include <std_msgs/Int16.h>
+#include <std_msgs/Float32.h>
 #include <geometry_msgs/Pose.h>
 #include <geometry_msgs/Point.h>
 #include <encoder/encoder.h>
@@ -20,6 +21,7 @@ float theta_total=0;
 ros::Time current_time, last_time;
 
 void encoderCallback(const encoder::encoder::ConstPtr&);
+void brujulaCallback(const std_msgs::Float32 & yaw);
 
 int main(int argc, char** argv) {
 
@@ -27,11 +29,14 @@ int main(int argc, char** argv) {
     ros::NodeHandle n;
     last_time = ros::Time::now();
     ros::Subscriber sub = n.subscribe("/encoder", 1, encoderCallback);
+    ros::Subscriber brujsub  = n.subscribe("/brujula", 1, brujulaCallback);
     ros::spin();
     return 0;
 }
 
-
+void brujulaCallback(const std_msgs::Float32 & yaw){
+   theta_total = yaw.data;
+}
 
 void encoderCallback(const encoder::encoder::ConstPtr& encoder) {
 
@@ -77,7 +82,7 @@ void encoderCallback(const encoder::encoder::ConstPtr& encoder) {
             //global position and orientation
             x_total+=delta_x;
             y_total+=delta_y;
-            theta_total+=delta_theta;
+            //theta_total+=delta_theta;
 
             //speeds
             v_x=x_total/dt;
