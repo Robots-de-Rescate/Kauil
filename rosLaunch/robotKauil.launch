@@ -1,8 +1,8 @@
 <launch>
 	<node pkg="rosserial_python" type="serial_node.py" args="$(env ARDUINO_PORT)" name="arduino_node" output="screen"/>
-	<node pkg="MD03ARIA" type="driver_neu" name="driver_neu" args="$(env ISS_PORT2)" output="screen"/>
+	<node pkg="brujula" type="brujula_publisher.py" name="brujula_publisher" args="$(env STM32_PORT)" output="screen"/>
+	<node pkg="MD03ARIA" type="driver_neu" name="driver_neu" args="$(env ISS_PORT_Kauil)" output="screen"/>
 	<node pkg="odometry" type="odom_2013" name="odom_2013" output="screen"/>
-
 	<node pkg="hokuyo_node" type="hokuyo_node" name="hokuyo" output="screen">
 		<param name="port" value="$(env HOKUYO_PORT)" />
 		<param name="frame_id" value="odom" />
