@@ -21,7 +21,6 @@ def main():
 	pubCompass = rospy.Publisher('Compass', Compass) # Topic with name Compass and message compass (float32)
 	sunbMotors = rospy.Subscriber("MD03ARIA_Values", Motors, callback) #Subscriber to the topic of the teleoperation node 
 	rospy.init_node('STM32_USB') # Node with name STM32_USB
-	r = rospy.Rate(10) #Hz
 	while not rospy.is_shutdown():
 		flag = 1
 		data = serial.read(13)
@@ -33,8 +32,7 @@ def main():
 		elif structData[0] == 'b':
 			pubBattery.publish(structData[1])
 		elif structData[0] == 'c':
-			pubCompass.publish(structData[2])
-		r.sleep()
+			pubCompass.publish(structData[3])
 
 if __name__ == '__main__':
 	try: 
