@@ -79,7 +79,8 @@ def talker():
 		elif chr == 'q':
 			pubMotors.publish(0,0)
 			termios.tcsetattr(fd, termios.TCSADRAIN, old_settings)#Return tty to original settings, this will let us use the tty as we normally use it
-	 	
+	 	elif chr == 's':
+			pubMotors.publish(0,0)
 
 if __name__ == '__main__':
 	fd = sys.stdin.fileno() #File descriptor of the interpreter input
@@ -87,6 +88,7 @@ if __name__ == '__main__':
 	tty.setraw(fd) #Mode of the file d
 	print '\r_______________________________________________'
 	print '\rPress (q) to exit tty raw mode.'
+	print '\rPress (s) to stop Kauil.'
 	print '\rUse arrow keys to move kauil.\n\rPress the same arrow key to increase velocity.'
 	print '\r________________________________________________\n'
 
