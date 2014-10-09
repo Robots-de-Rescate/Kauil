@@ -28,7 +28,7 @@ def main():
 		flag = 0
 		structData = unpack('<ciif',data)
 	
-		if structData[0] == 'a':
+		if structData[0] == 'e':
 			pubEncoder.publish(structData[1])
 		elif structData[0] == 'b':
 			pubBattery.publish(structData[1])
