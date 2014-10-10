@@ -8,7 +8,7 @@ def removeLine():
 	print '\r',
 
 def talker():
-	pubMotors = rospy.Publisher('MD03ARIA_Values', Motors)
+	pubMotors = rospy.Publisher('MD03_Values', Motors)
 	rospy.init_node('Teleoperation',anonymous = True)
 	#r = rospy.Rate(50)
 	vel = [0,0,0,0]

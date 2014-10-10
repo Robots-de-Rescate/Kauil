@@ -19,7 +19,7 @@ def main():
 	pubEncoder = rospy.Publisher('Encoder', Encoder) # Topic with name Encoder and message encoder (int32)
 	pubBattery = rospy.Publisher('Battery', Battery) # Topic with name Battery and message battery (int32)
 	pubCompass = rospy.Publisher('Compass', Compass) # Topic with name Compass and message compass (float32)
-	sunbMotors = rospy.Subscriber("MD03ARIA_Values", Motors, callback) #Subscriber to the topic of the teleoperation node 
+	sunbMotors = rospy.Subscriber("MD03_Values", Motors, callback) #Subscriber to the topic of the teleoperation node 
 	rospy.init_node('STM32_USB') # Node with name STM32_USB
 	while not rospy.is_shutdown():
 		flag = 1
