@@ -13,6 +13,5 @@ Dependencies
 
 Function
 ------
-This ROS node listens all the keys that are pressed on the pc keyboard to move the robot kauil. This node has to be subscribed to the STM32_USB node. 
-
+This ROS node registers all the keys that are pressed on the pc keyboard to move the robot kauil, the node STM32_USB has to be subscribed to this node in order to achieve this.
 
