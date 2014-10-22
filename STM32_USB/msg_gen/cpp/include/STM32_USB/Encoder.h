@@ -22,17 +22,22 @@ struct Encoder_ {
   typedef Encoder_<ContainerAllocator> Type;
 
   Encoder_()
-  : encoder(0)
+  : leftEncoder(0)
+  , rightEncoder(0)
   {
   }
 
   Encoder_(const ContainerAllocator& _alloc)
-  : encoder(0)
+  : leftEncoder(0)
+  , rightEncoder(0)
   {
   }
 
-  typedef int32_t _encoder_type;
-  int32_t encoder;
+  typedef int32_t _leftEncoder_type;
+  int32_t leftEncoder;
+
+  typedef int32_t _rightEncoder_type;
+  int32_t rightEncoder;
 
 
   typedef boost::shared_ptr< ::STM32_USB::Encoder_<ContainerAllocator> > Ptr;
@@ -63,12 +68,12 @@ template<class ContainerAllocator>
 struct MD5Sum< ::STM32_USB::Encoder_<ContainerAllocator> > {
   static const char* value() 
   {
-    return "6c463ba19d05d5db3d5666538249e96f";
+    return "005dd01da7b910afb1d350002afda46f";
   }
 
   static const char* value(const  ::STM32_USB::Encoder_<ContainerAllocator> &) { return value(); } 
-  static const uint64_t static_value1 = 0x6c463ba19d05d5dbULL;
-  static const uint64_t static_value2 = 0x3d5666538249e96fULL;
+  static const uint64_t static_value1 = 0x005dd01da7b910afULL;
+  static const uint64_t static_value2 = 0xb1d350002afda46fULL;
 };
 
 template<class ContainerAllocator>
@@ -85,8 +90,8 @@ template<class ContainerAllocator>
 struct Definition< ::STM32_USB::Encoder_<ContainerAllocator> > {
   static const char* value() 
   {
-    return "int32 encoder\n\
-\n\
+    return "int32 leftEncoder\n\
+int32 rightEncoder\n\
 \n\
 ";
   }
@@ -107,7 +112,8 @@ template<class ContainerAllocator> struct Serializer< ::STM32_USB::Encoder_<Cont
 {
   template<typename Stream, typename T> inline static void allInOne(Stream& stream, T m)
   {
-    stream.next(m.encoder);
+    stream.next(m.leftEncoder);
+    stream.next(m.rightEncoder);
   }
 
   ROS_DECLARE_ALLINONE_SERIALIZER;
@@ -125,8 +131,10 @@ struct Printer< ::STM32_USB::Encoder_<ContainerAllocator> >
 {
   template<typename Stream> static void stream(Stream& s, const std::string& indent, const  ::STM32_USB::Encoder_<ContainerAllocator> & v) 
   {
-    s << indent << "encoder: ";
-    Printer<int32_t>::stream(s, indent + "  ", v.encoder);
+    s << indent << "leftEncoder: ";
+    Printer<int32_t>::stream(s, indent + "  ", v.leftEncoder);
+    s << indent << "rightEncoder: ";
+    Printer<int32_t>::stream(s, indent + "  ", v.rightEncoder);
   }
 };
 
