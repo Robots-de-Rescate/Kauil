@@ -3,13 +3,15 @@ Robot de Rescate [Kauil](http://www.cem.itesm.mx/cms/kauil/)
 
 Paquetes hasta el momento:
 --------------
-    
-- **MD03ARIA** - Nodo de la teleoperación y driver de la interfaz I2C.
-- **Encoder** - Definición del mensaje con el que publica Arduino y código que utiliza el microcontrolador.
+
 - **Odometry** - Calcula y publica la posición absoluta del robot, mensajes de tipo encoder.
 - **rosLaunch** - Contiene los archivos .launch necesarios para lanzar los nodos en el robot y la estación remota.
 - **MLX90620** - Contiene la interfaz gráfica del sensor térmico de los datos obtenidos por medio de la subscripcion al tópico que publica el microcontrolador.
+- **STM32_USB** - Contiene el nodo encargado de la comunicación entre el microcontrolador STM32 y ROS.
+- **teleoperation** - Contiene el nodo encargado de la teleoperación del robot.
+- **kauil_tf** - Realiza las transformaciones de las coordenadas.  
 
+**Encrontrará una mayor descripción del paquete en el README.md de la carpeta correspondiente al paquete**
 
 Configuraciones:
 --------------
