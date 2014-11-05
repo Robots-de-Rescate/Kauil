@@ -8,9 +8,8 @@ def removeLine():
 	print '\r',
 
 def talker():
-	pubMotors = rospy.Publisher('MD03ARIA_Values', Motors)
-	rospy.init_node('Teleoperation',anonymous = True)
-	#r = rospy.Rate(50)
+	pubMotors = rospy.Publisher('MD03_Values', Motors)
+	rospy.init_node('Teleoperation')
 	vel = [0,0,0,0]
 	while not rospy.is_shutdown():
 		chr = sys.stdin.read(1)
@@ -78,9 +77,13 @@ def talker():
 				print 'Turning Left at: ' + str(vel[1]*.4) + '% power',
 		elif chr == 'q':
 			pubMotors.publish(0,0)
+			print 'Press Ctrl+c',
 			termios.tcsetattr(fd, termios.TCSADRAIN, old_settings)#Return tty to original settings, this will let us use the tty as we normally use it
 	 	elif chr == 's':
 			pubMotors.publish(0,0)
+			print 'Kauil has been stopped',
+			vel[0]= 0
+			vel[0]= 0
 
 if __name__ == '__main__':
 	fd = sys.stdin.fileno() #File descriptor of the interpreter input
