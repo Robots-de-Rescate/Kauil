@@ -1,2 +1,2 @@
-int32 encoder
-
+int32 leftEncoder
+int32 rightEncoder

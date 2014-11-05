@@ -6,15 +6,15 @@ import struct
 
 
 class Encoder(genpy.Message):
-  _md5sum = "6c463ba19d05d5db3d5666538249e96f"
+  _md5sum = "005dd01da7b910afb1d350002afda46f"
   _type = "STM32_USB/Encoder"
   _has_header = False #flag to mark the presence of a Header object
-  _full_text = """int32 encoder
-
+  _full_text = """int32 leftEncoder
+int32 rightEncoder
 
 """
-  __slots__ = ['encoder']
-  _slot_types = ['int32']
+  __slots__ = ['leftEncoder','rightEncoder']
+  _slot_types = ['int32','int32']
 
   def __init__(self, *args, **kwds):
     """
@@ -24,7 +24,7 @@ class Encoder(genpy.Message):
     changes.  You cannot mix in-order arguments and keyword arguments.
 
     The available fields are:
-       encoder
+       leftEncoder,rightEncoder
 
     :param args: complete set of field values, in .msg order
     :param kwds: use keyword arguments corresponding to message field names
@@ -33,10 +33,13 @@ class Encoder(genpy.Message):
     if args or kwds:
       super(Encoder, self).__init__(*args, **kwds)
       #message fields cannot be None, assign default values for those that are
-      if self.encoder is None:
-        self.encoder = 0
+      if self.leftEncoder is None:
+        self.leftEncoder = 0
+      if self.rightEncoder is None:
+        self.rightEncoder = 0
     else:
-      self.encoder = 0
+      self.leftEncoder = 0
+      self.rightEncoder = 0
 
   def _get_types(self):
     """
@@ -50,7 +53,8 @@ class Encoder(genpy.Message):
     :param buff: buffer, ``StringIO``
     """
     try:
-      buff.write(_struct_i.pack(self.encoder))
+      _x = self
+      buff.write(_struct_2i.pack(_x.leftEncoder, _x.rightEncoder))
     except struct.error as se: self._check_types(se)
     except TypeError as te: self._check_types(te)
 
@@ -61,9 +65,10 @@ class Encoder(genpy.Message):
     """
     try:
       end = 0
+      _x = self
       start = end
-      end += 4
-      (self.encoder,) = _struct_i.unpack(str[start:end])
+      end += 8
+      (_x.leftEncoder, _x.rightEncoder,) = _struct_2i.unpack(str[start:end])
       return self
     except struct.error as e:
       raise genpy.DeserializationError(e) #most likely buffer underfill
@@ -76,7 +81,8 @@ class Encoder(genpy.Message):
     :param numpy: numpy python module
     """
     try:
-      buff.write(_struct_i.pack(self.encoder))
+      _x = self
+      buff.write(_struct_2i.pack(_x.leftEncoder, _x.rightEncoder))
     except struct.error as se: self._check_types(se)
     except TypeError as te: self._check_types(te)
 
@@ -88,12 +94,13 @@ class Encoder(genpy.Message):
     """
     try:
       end = 0
+      _x = self
       start = end
-      end += 4
-      (self.encoder,) = _struct_i.unpack(str[start:end])
+      end += 8
+      (_x.leftEncoder, _x.rightEncoder,) = _struct_2i.unpack(str[start:end])
       return self
     except struct.error as e:
       raise genpy.DeserializationError(e) #most likely buffer underfill
 
 _struct_I = genpy.struct_I
-_struct_i = struct.Struct("<i")
+_struct_2i = struct.Struct("<2i")

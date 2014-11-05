@@ -1,4 +1,6 @@
 (cl:in-package STM32_USB-msg)
-(cl:export '(ENCODER-VAL
-          ENCODER
+(cl:export '(LEFTENCODER-VAL
+          LEFTENCODER
+          RIGHTENCODER-VAL
+          RIGHTENCODER
 ))

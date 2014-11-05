@@ -19,7 +19,7 @@ def main():
 	pubEncoder = rospy.Publisher('Encoder', Encoder) # Topic with name Encoder and message encoder (int32)
 	pubBattery = rospy.Publisher('Battery', Battery) # Topic with name Battery and message battery (int32)
 	pubCompass = rospy.Publisher('Compass', Compass) # Topic with name Compass and message compass (float32)
-	sunbMotors = rospy.Subscriber("MD03ARIA_Values", Motors, callback) #Subscriber to the topic of the teleoperation node 
+	sunbMotors = rospy.Subscriber("MD03_Values", Motors, callback) #Subscriber to the topic of the teleoperation node 
 	rospy.init_node('STM32_USB') # Node with name STM32_USB
 	while not rospy.is_shutdown():
 		flag = 1
@@ -28,7 +28,7 @@ def main():
 		structData = unpack('<ciif',data)
 	
 		if structData[0] == 'e':
-			pubEncoder.publish(structData[1])
+			pubEncoder.publish(structData[1],structData[2])
 		elif structData[0] == 'b':
 			pubBattery.publish(structData[1])
 		elif structData[0] == 'c':
