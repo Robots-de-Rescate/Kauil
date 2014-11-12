@@ -9,9 +9,10 @@
 #include "math.h"
 #include <std_msgs/Int16.h>
 #include <std_msgs/Float32.h>
+#include <STM32_USB/Compass.h>
+#include <STM32_USB/Encoder.h>
 #include <geometry_msgs/Pose.h>
 #include <geometry_msgs/Point.h>
-#include <encoder/encoder.h>
 
 #define PI 3.14159265
 
@@ -20,32 +21,32 @@ float y_total=0;
 float theta_total=0;
 ros::Time current_time, last_time;
 
-void encoderCallback(const encoder::encoder::ConstPtr&);
-void brujulaCallback(const std_msgs::Float32 & yaw);
+void compassCallback(const STM32_USB::Compass & yaw);
+void encoderCallback(const STM32_USB::Encoder& encoder);
 
 int main(int argc, char** argv) {
 
     ros::init(argc, argv, "odometry_publisher");
     ros::NodeHandle n;
     last_time = ros::Time::now();
-    ros::Subscriber sub = n.subscribe("/encoder", 1, encoderCallback);
-    ros::Subscriber brujsub  = n.subscribe("/brujula", 1, brujulaCallback);
+    ros::Subscriber sub = n.subscribe("/Encoder", 1, encoderCallback);
+    ros::Subscriber brujsub  = n.subscribe("/Compass", 1, compassCallback);
     ros::spin();
     return 0;
 }
 
-void brujulaCallback(const std_msgs::Float32 & yaw){
-   theta_total = yaw.data;
+void compassCallback(const STM32_USB::Compass & yaw){
+   theta_total = yaw.compass;
 }
 
-void encoderCallback(const encoder::encoder::ConstPtr& encoder) {
+void encoderCallback(const STM32_USB::Encoder& encoder) {
 
     ros::NodeHandle n;
     ros::Publisher odom_pub = n.advertise<nav_msgs::Odometry>("odom", 50);
     tf::TransformBroadcaster odom_broadcaster;
 
-    float pulse_r = (float)(encoder->der);
-    float pulse_l = (float)(encoder->izq);
+    float pulse_r = (float)(encoder.rightEncoder);
+    float pulse_l = (float)(encoder.leftEncoder);
 
     float delta_x = 0;
     float delta_y = 0;

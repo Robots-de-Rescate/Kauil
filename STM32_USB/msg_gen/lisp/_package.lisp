@@ -3,11 +3,11 @@
   (:export
    "<BATTERY>"
    "BATTERY"
+   "<COMPASS>"
+   "COMPASS"
    "<ENCODER>"
    "ENCODER"
    "<MOTORS>"
    "MOTORS"
-   "<COMPASS>"
-   "COMPASS"
   ))
 

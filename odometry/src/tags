@@ -1,0 +1,39 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+PI	odom_2013.cpp	16;"	d	file:
+PI	odom_ready4_4.cpp	15;"	d	file:
+__init__	odometry/msg/_encoder.py	/^  def __init__(self, *args, **kwds):$/;"	f
+__slots__	odometry/msg/_encoder.py	/^  __slots__ = ['rpulses','lpulses']$/;"	v
+_get_types	odometry/msg/_encoder.py	/^  def _get_types(self):$/;"	f
+_has_header	odometry/msg/_encoder.py	/^  _has_header = False #flag to mark the presence of a Header object$/;"	v	class:encoder
+_md5sum	odometry/msg/_encoder.py	/^  _md5sum = "a066eb83358996063bdf035669876fc4"$/;"	v	class:encoder
+_slot_types	odometry/msg/_encoder.py	/^  _slot_types = ['float64','float64']$/;"	v
+_struct_2d	odometry/msg/_encoder.py	/^_struct_2d = struct.Struct("<2d")$/;"	v
+_struct_I	odometry/msg/_encoder.py	/^_struct_I = genpy.struct_I$/;"	v
+_type	odometry/msg/_encoder.py	/^  _type = "odometry\/encoder"$/;"	v	class:encoder
+brujulaCallback	odom_2013.cpp	/^void brujulaCallback(const std_msgs::Float32 & yaw){$/;"	f
+current_time	odom_2013.cpp	/^ros::Time current_time, last_time;$/;"	v
+deserialize	odometry/msg/_encoder.py	/^  def deserialize(self, str):$/;"	f
+deserialize_numpy	odometry/msg/_encoder.py	/^  def deserialize_numpy(self, str, numpy):$/;"	f
+encoder	odometry/msg/_encoder.py	/^class encoder(genpy.Message):$/;"	c
+encoderCallback	odom_2013.cpp	/^void encoderCallback(const encoder::encoder::ConstPtr& encoder) {$/;"	f
+encoderCallback	odom_ready4_4.cpp	/^void encoderCallback(const  std_msgs::ColorRGBA::ConstPtr& encoder)$/;"	f
+global_x	odom_ready4_4.cpp	/^  float global_x = 0.0;$/;"	v
+global_y	odom_ready4_4.cpp	/^  float global_y = 0.0;$/;"	v
+last_time	odom_2013.cpp	/^ros::Time current_time, last_time;$/;"	v
+main	encoder_test.cpp	/^int main(int argc, char **argv)$/;"	f
+main	odom_2013.cpp	/^int main(int argc, char** argv) {$/;"	f
+main	odom_ready4_4.cpp	/^int main(int argc, char** argv)$/;"	f
+python3	odometry/msg/_encoder.py	/^python3 = True if sys.hexversion > 0x03000000 else False$/;"	v
+serialize	odometry/msg/_encoder.py	/^  def serialize(self, buff):$/;"	f
+serialize_numpy	odometry/msg/_encoder.py	/^  def serialize_numpy(self, buff, numpy):$/;"	f
+th_t	odom_ready4_4.cpp	/^  double th_t = 0.0;	\/\/global th < rad >$/;"	v
+theta_total	odom_2013.cpp	/^float theta_total=0;$/;"	v
+x	odom_ready4_4.cpp	/^  double x = 0.0; 	\/\/displacement < m >$/;"	v
+x_total	odom_2013.cpp	/^float x_total=0;$/;"	v
+y	odom_ready4_4.cpp	/^  double y = 0.0; 	\/\/displacement < m >$/;"	v
+y_total	odom_2013.cpp	/^float y_total=0;$/;"	v
