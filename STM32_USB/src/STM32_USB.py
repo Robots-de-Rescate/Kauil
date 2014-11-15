@@ -22,9 +22,7 @@ def main():
 	sunbMotors = rospy.Subscriber("MD03_Values", Motors, callback) #Subscriber to the topic of the teleoperation node 
 	rospy.init_node('STM32_USB') # Node with name STM32_USB
 	while not rospy.is_shutdown():
-		flag = 1
 		data = serial.read(13)
-		flag = 0
 		structData = unpack('<ciif',data)
 	
 		if structData[0] == 'e':
