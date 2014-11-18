@@ -7,8 +7,12 @@ def removeLine():
 	print '                                                            ',
 	print '\r',
 
-def talker():
-	pubMotors = rospy.Publisher('MD03_Values', Motors)
+def talker(valor):
+	
+	if valor=='si':
+		pubMotors = rospy.Publisher('MD03_Values', Motors)
+	elif valor=='no':		
+		pubMotors = rospy.Publisher('MD03_Values', Motors, queue_size=10)
 	rospy.init_node('Teleoperation')
 	vel = [0,0,0,0]
 	while not rospy.is_shutdown():
@@ -86,6 +90,7 @@ def talker():
 			vel[0]= 0
 
 if __name__ == '__main__':
+	valor=str(raw_input("Usas ROS Fuerte?"))	
 	fd = sys.stdin.fileno() #File descriptor of the interpreter input
 	old_settings = termios.tcgetattr(fd) #List with tty attributes of the file descriptor
 	tty.setraw(fd) #Mode of the file d
@@ -96,6 +101,6 @@ if __name__ == '__main__':
 	print '\r________________________________________________\n'
 
 	try:
-		talker()
+		talker(valor)
 	except rospy.ROSInterruptException:pass
 
