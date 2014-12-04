@@ -1,6 +1,5 @@
 <launch>
 	<node pkg="STM32_USB" type="STM32_USB.py" name="STM32_USB" args="$(env STM32_PORT)" output="screen"/>
-	<node pkg="odometry" type="odom_2013" name="odom_2013" output="screen"/>
 	<node pkg="hokuyo_node" type="hokuyo_node" name="hokuyo" output="screen">
 		<param name="port" value="$(env HOKUYO_PORT)" />
 		<param name="frame_id" value="odom" />

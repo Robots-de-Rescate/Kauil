@@ -1,7 +1,8 @@
 <launch>
-<node pkg="teleoperation" type="teleop_keyboard.py" name="teleoperation" output="screen" />
-<node pkg="rviz" type="rviz" name="rviz" output="screen" />
-<node pkg="gmapping" type="slam_gmapping" name="slam_gmapping" output="screen" />
-<node pkg="dynamic_reconfigure" type="reconfigure_gui" name="reconfigure_gui" output="screen" />
+    <node pkg="teleoperation" type="teleop_keyboard.py" name="teleoperation" output="screen" />
+	<node pkg="odometry" type="odom_2013" name="odom_2013" output="screen"/>
+    <node pkg="rviz" type="rviz" name="rviz" output="screen" />
+    <node pkg="gmapping" type="slam_gmapping" name="slam_gmapping" output="screen" />
+    <node pkg="dynamic_reconfigure" type="reconfigure_gui" name="reconfigure_gui" output="screen" />
 </launch>
 
