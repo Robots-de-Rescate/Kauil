@@ -137,7 +137,7 @@ int main(int argc, char** argv) {
 }
 
 void compassCallback(const STM32_USB::Compass & yaw){
-   theta_total = yaw.compass;
+   theta_total = yaw.compass*0.017452;
 }
 
 void encoderCallback(const STM32_USB::Encoder& encoder) {
