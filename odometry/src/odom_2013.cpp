@@ -19,34 +19,14 @@
 float x_total=0;
 float y_total=0;
 float theta_total=0;
+float pulse_r = 0.0;
+float pulse_l = 0.0;
 ros::Time current_time, last_time;
 
 void compassCallback(const STM32_USB::Compass & yaw);
 void encoderCallback(const STM32_USB::Encoder& encoder);
 
 int main(int argc, char** argv) {
-
-    ros::init(argc, argv, "odometry_publisher");
-    ros::NodeHandle n;
-    last_time = ros::Time::now();
-    ros::Subscriber sub = n.subscribe("/Encoder", 1, encoderCallback);
-    ros::Subscriber brujsub  = n.subscribe("/Compass", 1, compassCallback);
-    ros::spin();
-    return 0;
-}
-
-void compassCallback(const STM32_USB::Compass & yaw){
-   theta_total = yaw.compass;
-}
-
-void encoderCallback(const STM32_USB::Encoder& encoder) {
-
-    ros::NodeHandle n;
-    ros::Publisher odom_pub = n.advertise<nav_msgs::Odometry>("odom", 50);
-    tf::TransformBroadcaster odom_broadcaster;
-
-    float pulse_r = (float)(encoder.rightEncoder);
-    float pulse_l = (float)(encoder.leftEncoder);
 
     float delta_x = 0;
     float delta_y = 0;
@@ -63,12 +43,21 @@ void encoderCallback(const STM32_USB::Encoder& encoder) {
     float sl = 0;
     float sr = 0;    //arc length < m >
 
-    current_time = ros::Time::now();
+    ros::init(argc, argv, "odometry_publisher");
+    ros::NodeHandle n;
+
+    last_time = ros::Time::now();
+    ros::Subscriber sub = n.subscribe("/Encoder", 1, encoderCallback);
+    ros::Subscriber brujsub  = n.subscribe("/Compass", 1, compassCallback);
+    ros::Publisher odom_pub = n.advertise<nav_msgs::Odometry>("odom", 50);
+
+    tf::TransformBroadcaster odom_broadcaster;
 
     ros::Rate r(20);
     while(n.ok()) {
 
         ros::spinOnce();        // check for incoming messages
+        current_time = ros::Time::now();
 
         dt = (current_time - last_time).toSec(); // time differential
 
@@ -143,4 +132,17 @@ void encoderCallback(const STM32_USB::Encoder& encoder) {
         last_time = current_time;
         r.sleep();
     }
+    ros::spin();
+    return 0;
+}
+
+void compassCallback(const STM32_USB::Compass & yaw){
+   theta_total = yaw.compass;
+}
+
+void encoderCallback(const STM32_USB::Encoder& encoder) {
+
+    pulse_r = (float)(encoder.rightEncoder);
+    pulse_l = (float)(encoder.leftEncoder);
+
 }
