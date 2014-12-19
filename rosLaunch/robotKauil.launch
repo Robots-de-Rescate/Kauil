@@ -2,7 +2,7 @@
 	<node pkg="STM32_USB" type="STM32_USB.py" name="STM32_USB" args="$(env STM32_PORT)" output="screen"/>
 	<node pkg="hokuyo_node" type="hokuyo_node" name="hokuyo" output="screen">
 		<param name="port" value="$(env HOKUYO_PORT)" />
-		<param name="frame_id" value="odom" />
+		<param name="frame_id" value="base_laser" />
 	</node>
 
 </launch>
