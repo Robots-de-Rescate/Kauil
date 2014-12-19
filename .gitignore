@@ -2,7 +2,7 @@ bin/
 build/
 *~
 
-.swp
+*.swp
 src/tags
 *.pyc
 .DS_Store
