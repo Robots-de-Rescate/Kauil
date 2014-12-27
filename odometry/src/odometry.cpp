@@ -66,8 +66,8 @@ int main(int argc, char** argv) {
 
         if(pulse_r!=0 || pulse_l!=0) {
             delta_theta=(sl-sr)/0.3;
-            delta_x=((sr+sl)*(sin(theta_total)))/2;
-            delta_y=((sr+sl)*(cos(theta_total)))/2;
+            delta_x=((sr+sl)*(cos(theta_total)))/2;
+            delta_y=((sr+sl)*(sin(theta_total)))/2;
 
             //global position and orientation
             x_total+=delta_x;
@@ -104,7 +104,7 @@ int main(int argc, char** argv) {
         //next, we'll publish the odometry message over ROS
         nav_msgs::Odometry odom;
         odom.header.stamp = current_time;
-        odom.header.frame_id = "odom";
+        odom.header.frame_id = "/odom";
         odom.child_frame_id = "base_link";
 
         //set the position
