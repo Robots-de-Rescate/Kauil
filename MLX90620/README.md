@@ -1,5 +1,6 @@
 ![STM32_USB ROS node](https://github.com/Robots-de-Rescate/Kauil_ROS/blob/master/img/ROSNode_MLX90620.jpg)
 
+This ROS node is not used at the moment in Kauil, because the code developed for obtaining the data from the temperature sensor was made for the arduino mega and kauil only has the STM32 micrcontroller to send data to ROS. This is the reason why this is a proyect exlplained at the general wiki. 
 
 This directory contains all the ROS files for obtaining the temperature sensor data (MLX90620) from the microcontroller (Arduino MEGA) and for displaying the data in a graphic user interface.
 
@@ -14,4 +15,4 @@ Function
 
 ![STM32_USB ROS node](https://github.com/Robots-de-Rescate/Kauil_ROS/blob/master/img/MLX90620_GUI.png)
 
-
+Refer to the wiki for obtaining detail information and making this ROS node available to use in Kauil.
