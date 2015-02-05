@@ -1,4 +1,4 @@
-Robot de Rescate [Kauil](http://www.cem.itesm.mx/cms/kauil/)
+Robot de Rescate [Kauil](https://github.com/Robots-de-Rescate/wiki_general/wiki/Kauil)
 ==============
 
 Paquetes hasta el momento:
