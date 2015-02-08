@@ -53,7 +53,6 @@ int main(int argc, char** argv) {
 
     tf::TransformBroadcaster odom_broadcaster;
 
-    ros::Rate r(20);
     while(n.ok()) {
 
         ros::spinOnce();        // check for incoming messages
@@ -130,7 +129,6 @@ int main(int argc, char** argv) {
                 ros::Time::now(), "/base_link", "/base_laser"));
 
         last_time = current_time;
-        r.sleep();
     }
     ros::spin();
     return 0;
