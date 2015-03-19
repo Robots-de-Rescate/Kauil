@@ -1,0 +1,19 @@
+<package>
+  <description brief="ipcam">
+
+     ipcam
+
+  </description>
+  <author>tim</author>
+  <license>BSD</license>
+  <review status="unreviewed" notes=""/>
+  <url>http://ros.org/wiki/ipcam</url>
+  <depend package="std_msgs"/>
+  <depend package="rospy"/>
+  
+  <depend package="sensor_msgs"/>
+  <depend package="cv_bridge"/>
+
+</package>
+
+
