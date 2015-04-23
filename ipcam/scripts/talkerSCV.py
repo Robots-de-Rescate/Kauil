@@ -29,12 +29,12 @@ def getImage(video):
         while not display.isDone():
 
             imagen = ipCam.getImage()
-            faces = imagen.findHaarFeatures('face')
-            if faces is not None:
-                faces = faces.sortArea()
-                bigFace = faces[-1]
+            #faces = imagen.findHaarFeatures('face')
+            #if faces is not None:
+                #faces = faces.sortArea()
+                #bigFace = faces[-1]
                 # Draw a green box around the face
-                bigFace.draw()
+                #bigFace.draw()
             #imagen = ipCam.live()
             imagen.save(display)
 
