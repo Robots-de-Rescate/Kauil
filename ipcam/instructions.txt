@@ -1,0 +1,16 @@
+El siguiente es un archivo de instrucciones para poder usar la libreria ipcam. Primero se deben instalar las siguientes librerias:
+
+sudo apt-get install ipython python-opencv python-scipy python-numpy python-pygame python-setuptools python-pip
+sudo pip install https://github.com/ingenuitas/SimpleCV/zipball/master
+sudo pip install getch rospy
+sudo add-apt-repository ppa:gijzelaar/opencv2.3
+sudo apt-get update
+
+Si se obtiene un error que tenga una bandera como esta: IOError: [Errno 2] No such file or directory: '/usr/lib/pymodules/python2.7/SimpleCV/sampleimages/simplecv.png'
+Se debe crear los directorios y el archivo png correspondiente. Se recomienda descargar de aqui el archivo:
+https://docs.google.com/file/d/0Bwb_Zi7_nUirRXQ5OXlVZmlQU1k/edit
+
+Se recomienda leer la siguiente ligar para poder entender mas el error:
+https://github.com/sightmachine/SimpleCV/issues/213
+
+Antes de usar ipcam se debe hacer el tutorial de SimpleCV.
