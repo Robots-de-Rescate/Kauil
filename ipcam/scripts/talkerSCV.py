@@ -31,10 +31,10 @@ def getImage(video):
             imagen = ipCam.getImage()
             #faces = imagen.findHaarFeatures('face')
             #if faces is not None:
-                #faces = faces.sortArea()
-                #bigFace = faces[-1]
+            #    faces = faces.sortArea()
+            #    bigFace = faces[-1]
                 # Draw a green box around the face
-                #bigFace.draw()
+            #    bigFace.draw()
             #imagen = ipCam.live()
             imagen.save(display)
 
@@ -70,7 +70,7 @@ def talker():
                     thread.start()
                     time.sleep(1)
                     lista_threads.append(thread)
-                elif char =='v':
+                elif char == 'v':
                     thread=threading.Thread(target=getImage, args=(True,))
                     thread.start()
                     time.sleep(1)
